@@ -6,5 +6,21 @@
 </script>
 
 <Container>
-  <Title>ПОДКАТЫ</Title>
+  <div class="title">
+    <Title>ПОДКАТЫ</Title>
+    <div class="subtext mt-2">Бей в лунку!</div>
+  </div>
 </Container>
+
+<style>
+  .title {
+    width: max-content;
+    margin: 5rem auto 0;
+  }
+
+  .subtext {
+    color: #FFF;
+    font-family: "Caveat", sans-serif;
+    text-align: center;
+  }
+</style>
