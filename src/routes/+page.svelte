@@ -10,6 +10,10 @@
     <Title>ПОДКАТЫ</Title>
     <div class="subtext mt-2">Бей в лунку!</div>
   </div>
+
+  <div class="inputs">
+    <input placeholder="Назови себя"/>
+  </div>
 </Container>
 
 <style>
