@@ -20,6 +20,8 @@ input {
   display: block;
   padding: .5rem 1rem;
 
+  width: 100%;
+
   border-radius: 1rem;
   border: none;
   outline: none;
@@ -31,6 +33,7 @@ input {
 
   font: inherit;
 }
+
 input:focus {
   --shadow-blur: 12px;
 }

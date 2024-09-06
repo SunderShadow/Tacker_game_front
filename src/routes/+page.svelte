@@ -11,8 +11,9 @@
     <div class="subtext mt-2">Бей в лунку!</div>
   </div>
 
-  <div class="inputs">
+  <div class="inputs mt-5">
     <input placeholder="Назови себя"/>
+    <input class="mt-2" placeholder="Код комнаты"/>
   </div>
 </Container>
 
@@ -26,5 +27,12 @@
     color: #FFF;
     font-family: "Caveat", sans-serif;
     text-align: center;
+  }
+
+  .inputs {
+    width: 200px;
+
+    margin-left: auto;
+    margin-right: auto;
   }
 </style>
