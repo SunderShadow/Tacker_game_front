@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 html, body {
   height: 100%;
   padding: 0;
@@ -6,4 +8,6 @@ html, body {
 
 body {
   background: radial-gradient(#D5A5DA, #98579E);
+  font-size: 24px;
+  font-family: "Anonymous Pro", serif;
 }
