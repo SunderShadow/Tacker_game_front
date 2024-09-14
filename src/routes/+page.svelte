@@ -1,8 +1,18 @@
 <script>
+  import {goto} from '$app/navigation'
+
   import '$lib/styles/global.scss'
 
   import Container from "$lib/components/Container.svelte"
   import TitleBlock from "$lib/components/TitleBlock.svelte"
+
+  function joinLobby() {
+    goto('/lobby')
+  }
+
+  function createLobby() {
+    goto('/lobby')
+  }
 </script>`
 
 <Container>
@@ -15,7 +25,7 @@
     <input class="mt-2" placeholder="Код комнаты"/>
   </div>
 
-  <button class="btn mt-5">
+  <button class="btn mt-5" on:click={joinLobby}>
     Присоединится
   </button>
 
@@ -25,7 +35,7 @@
     <hr class="divider mt-2">
   </div>
 
-  <button class="btn mt-2">
+  <button class="btn mt-2" on:click={createLobby}>
     Создать лобби
   </button>
 </Container>
