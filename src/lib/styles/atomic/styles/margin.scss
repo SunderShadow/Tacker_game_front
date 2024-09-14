@@ -1,0 +1,7 @@
+@use "../config.scss";
+
+@for $i from 1 through config.$margin-steps-count {
+  .mt-#{$i} {
+    margin-top: $i * config.$margin-step-size;
+  }
+}
