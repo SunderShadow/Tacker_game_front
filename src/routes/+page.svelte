@@ -3,12 +3,7 @@
 
   import Container from "$lib/components/Container.svelte"
   import Title from "$lib/components/Title.svelte"
-  import GithubIcon from "$lib/icons/Github.svelte"
 </script>
-
-<a href="https://github.com/SunderShadow/Tacker_game_front" class="git_icon">
-  <GithubIcon/>
-</a>
 
 <Container>
   <div class="title">
@@ -38,12 +33,6 @@
 
 <style lang="scss">
   @use "$lib/config.scss";
-
-  .git_icon {
-    display: flex;
-    width: 40px;
-    margin: .5rem 0 0 .5rem;
-  }
 
   .title {
     width: max-content;
