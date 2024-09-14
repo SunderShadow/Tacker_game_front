@@ -18,35 +18,7 @@ body {
   font-family: "Anonymous Pro", serif;
 }
 
-input {
-  --shadow-blur: 10px;
-  display: block;
-  padding: .5rem 1rem;
-
-  width: 100%;
-
-  border-radius: 1rem;
-  border: none;
-  outline: none;
-
-  box-shadow:
-    inset 0 0 var(--shadow-blur) #CA52D2,
-    -1px 4px var(--shadow-blur) rgba(#000, .25)
-  ;
-
-  box-sizing: border-box;
-
-  font: inherit;
-}
-
-input:focus {
-  --shadow-blur: 12px;
-}
-
-input::placeholder {
-  font-style: italic;
-  font-weight: bold;
-}
+@import "./styles/default/input";
 
 button {
   --bg-spread: 2px;
