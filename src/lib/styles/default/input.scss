@@ -1,5 +1,8 @@
+@use "$lib/config.scss";
+
 input {
   --shadow-blur: 10px;
+
   display: block;
   padding: .5rem 1rem;
 
@@ -16,11 +19,17 @@ input {
 
   box-sizing: border-box;
 
+  transition-property: box-shadow;
+  transition-duration: config.$default-input-transition-duration;
   font: inherit;
 }
 
+input:hover {
+  --shadow-blur: 14px;
+}
+
 input:focus {
-  --shadow-blur: 12px;
+  --shadow-blur: 18px;
 }
 
 input::placeholder {

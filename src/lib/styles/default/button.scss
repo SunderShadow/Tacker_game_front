@@ -17,7 +17,7 @@ button {
   color: #000;
 
   transition-property: box-shadow, color;
-  transition-duration: 600ms;
+  transition-duration: config.$default-btn-transition-duration;
 }
 
 button:hover {
