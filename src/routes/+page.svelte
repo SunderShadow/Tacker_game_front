@@ -20,7 +20,11 @@
     Присоединится
   </button>
 
-  <hr class="divider mt-2">
+  <div class="or_divider mt-2">
+    <hr class="divider mt-2">
+    Или
+    <hr class="divider mt-2">
+  </div>
 
   <button class="btn mt-2">
     Создать лобби
@@ -37,6 +41,7 @@
   .subtext {
     color: #FFF;
     font-family: "Caveat", sans-serif;
+    font-size: 1.25rem;
     text-align: center;
   }
 
@@ -55,6 +60,22 @@
 
   .divider {
     border-color: #fff;
+    border-width: 2px;
     width: 80%;
+    margin: 0;
+  }
+
+  .or_divider {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    width: min(80%, 500px);
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Caveat", sans-serif;
   }
 </style>
