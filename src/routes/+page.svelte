@@ -31,11 +31,18 @@
   </button>
 </Container>
 
-<style>
+<style lang="scss">
+  @use "$lib/config.scss";
+
   .title {
     width: max-content;
     margin: 0 auto;
-    padding-top: 5rem;
+
+    padding-top: 2rem;
+
+    @media (min-width: config.$screen-size-desktop) {
+      padding-top: 5rem;
+    }
   }
 
   .subtext {
