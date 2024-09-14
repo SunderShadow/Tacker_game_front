@@ -1,5 +1,5 @@
 <script>
-  import '$lib/global.scss'
+  import '$lib/styles/global.scss'
 
   import Container from "$lib/components/Container.svelte"
   import Title from "$lib/components/Title.svelte";
