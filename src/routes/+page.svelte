@@ -2,13 +2,12 @@
   import '$lib/styles/global.scss'
 
   import Container from "$lib/components/Container.svelte"
-  import Title from "$lib/components/Title.svelte"
-</script>
+  import TitleBlock from "$lib/components/TitleBlock.svelte"
+</script>`
 
 <Container>
-  <div class="title">
-    <Title>ПОДКАТЫ</Title>
-    <div class="subtext mt-2">Бей в лунку!</div>
+  <div class="title_container">
+    <TitleBlock title="Подкаты" subtitle="Бей в лунку!"/>
   </div>
 
   <div class="inputs mt-5">
@@ -34,22 +33,12 @@
 <style lang="scss">
   @use "$lib/config.scss";
 
-  .title {
-    width: max-content;
-    margin: 0 auto;
-
+  .title_container {
     padding-top: 2rem;
 
     @media (min-width: config.$screen-size-desktop) {
       padding-top: 5rem;
     }
-  }
-
-  .subtext {
-    color: #FFF;
-    font-family: "Caveat", sans-serif;
-    font-size: 1.25rem;
-    text-align: center;
   }
 
   .inputs {

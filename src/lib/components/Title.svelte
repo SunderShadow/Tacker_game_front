@@ -11,5 +11,6 @@
 
     color: #370e4a;
     font-weight: bold;
+    text-transform: uppercase;
   }
 </style>
