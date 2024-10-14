@@ -1,11 +1,26 @@
-<script>
+<script lang="ts">
   import {goto} from '$app/navigation'
+  import game from "$lib/store/game"
 
   import '$lib/styles/global.scss'
 
   import Container from "$lib/components/Container.svelte"
   import TitleBlock from "$lib/components/TitleBlock.svelte"
+  import type {GameData} from "$lib/store/game"
+  import {onDestroy} from "svelte";
 
+  let player = {
+    name: ""
+  }
+
+  let gameData: GameData
+  const unsubscribe = game.subscribe((v) => {
+    gameData = v
+  })
+
+  onDestroy(() => {
+    unsubscribe()
+  })
   function joinLobby() {
     goto('/lobby')
   }
@@ -21,7 +36,7 @@
   </div>
 
   <div class="inputs mt-5">
-    <input placeholder="Назови себя"/>
+    <input placeholder="Назови себя" bind:value={player.name}/>
     <input class="mt-2" placeholder="Код комнаты"/>
   </div>
 
