@@ -18,6 +18,13 @@ html {
   background: radial-gradient(#D5A5DA, #98579E);
 }
 
+
+@mixin default {
+  &:not([default]) {
+    @content;
+  }
+}
+
 @import "default/input";
 @import "default/button";
 

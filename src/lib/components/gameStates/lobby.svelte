@@ -27,6 +27,13 @@
         return v
       })
     })
+
+    gameAPI.on('game:state:prepare-cards', function () {
+      gameStore.update(v => ({
+        ...v,
+        state: 'prepare-cards'
+      }))
+    })
   })
 
   onDestroy(() => {

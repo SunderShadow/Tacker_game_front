@@ -1,6 +1,7 @@
 <script lang="ts">
   import StartState from "$lib/components/gameStates/start.svelte"
   import LobbyState from "$lib/components/gameStates/lobby.svelte"
+  import PrepareCardsState from "$lib/components/gameStates/prepare_cards.svelte"
 
   import gameAPI from "$lib/api/game"
   import gameStore, {type LobbyID, type Player} from "$lib/store/game"
@@ -8,6 +9,7 @@
   import {onMount} from "svelte"
 
   let gameConn: null|Promise<void>
+  /*
   onMount(() => {
     gameConn = gameAPI.connect()
     gameConn.then(
@@ -42,6 +44,7 @@
       }
     )
   })
+  */
 </script>`
 
 {#if gameConn}
@@ -54,8 +57,11 @@
   {/await}
 {/if}
 
-{#if $gameStore.state === 'start'}
-  <StartState />
-{:else if $gameStore.state === 'lobby'}
-  <LobbyState />
-{/if}
+<PrepareCardsState />
+<!--{#if $gameStore.state === 'start'}-->
+<!--  <StartState />-->
+<!--{:else if $gameStore.state === 'lobby'}-->
+<!--  <LobbyState />-->
+<!--{:else if $gameStore.state === 'prepare-cards'}-->
+<!--  <PrepareCardsState/>-->
+<!--{/if}-->

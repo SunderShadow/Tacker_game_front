@@ -1,38 +1,40 @@
 @use "$lib/config.scss";
 
 input {
-  --shadow-blur: 10px;
+  @include default {
+    --shadow-blur: 10px;
 
-  display: block;
-  padding: .5rem 1rem;
+    display: block;
+    padding: .5rem 1rem;
 
-  width: 100%;
+    width: 100%;
 
-  border-radius: 1rem;
-  border: none;
-  outline: none;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
 
-  box-shadow:
-          inset 0 0 var(--shadow-blur) #CA52D2,
-          -1px 4px var(--shadow-blur) rgba(#000, .25)
-;
+    box-shadow:
+            inset 0 0 var(--shadow-blur) #CA52D2,
+            -1px 4px var(--shadow-blur) rgba(#000, .25)
+  ;
 
-  box-sizing: border-box;
+    box-sizing: border-box;
 
-  transition-property: box-shadow;
-  transition-duration: config.$default-input-transition-duration;
-  font: inherit;
-}
+    transition-property: box-shadow;
+    transition-duration: config.$default-input-transition-duration;
+    font: inherit;
 
-input:hover {
-  --shadow-blur: 14px;
-}
+    &:hover {
+      --shadow-blur: 14px;
+    }
 
-input:focus {
-  --shadow-blur: 18px;
-}
+    &:focus {
+      --shadow-blur: 18px;
+    }
 
-input::placeholder {
-  font-style: italic;
-  font-weight: bold;
+    &::placeholder {
+      font-style: italic;
+      font-weight: bold;
+    }
+  }
 }
