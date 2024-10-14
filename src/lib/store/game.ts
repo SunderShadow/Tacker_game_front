@@ -6,14 +6,19 @@ export type Player = {
   votes: number
 }
 
+export type LobbyID = number
 export type GameData = {
+  state: string,
+  isOwner: boolean,
   players: Player[],
   lobby: {
-    id: number
+    id: LobbyID
   }
 }
 
 export default writable<GameData>({
+  state: "start",
+  isOwner: false,
   players: [
     {
       id: 1,

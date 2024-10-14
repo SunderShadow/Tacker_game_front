@@ -1,0 +1,106 @@
+<script lang="ts">
+  import gameAPI from "$lib/api/game"
+  import gameStore, {type LobbyID, type Player} from "$lib/store/game"
+
+  import Container from "$lib/components/Container.svelte"
+  import TitleBlock from "$lib/components/TitleBlock.svelte"
+
+  type Form = {
+    playerName: null|string,
+    lobbyID: null|number,
+  }
+
+  let form: Form = {
+    playerName: null,
+    lobbyID: null
+  }
+
+  function joinLobby() {
+    gameAPI.sendAction('lobby:join', {
+      id: form.lobbyID,
+      name: form.playerName
+    })
+
+    gameStore.update(function (v) {
+      v.lobby.id = 1
+      return v
+    })
+  }
+
+  function createLobby() {
+    gameAPI.sendAction('lobby:create', {
+      name: form.playerName
+    })
+  }
+</script>
+
+<Container>
+  <div class="title_container">
+    <TitleBlock title="Подкаты" subtitle="Бей в лунку!"/>
+  </div>
+
+  <div class="inputs mt-5">
+    <input placeholder="Назови себя" bind:value={form.playerName}/>
+    <input class="mt-2" placeholder="Код комнаты" bind:value={form.lobbyID}/>
+  </div>
+
+  <button class="btn mt-5" on:click={joinLobby}>
+    Присоединится
+  </button>
+
+  <div class="or_divider mt-2">
+    <hr class="divider mt-2">
+    Или
+    <hr class="divider mt-2">
+  </div>
+
+  <button class="btn mt-2" on:click={createLobby}>
+    Создать лобби
+  </button>
+</Container>
+
+<style lang="scss">
+  @use "$lib/config.scss";
+
+  .title_container {
+    padding-top: 2rem;
+
+    @media (min-width: config.$screen-size-desktop) {
+      padding-top: 5rem;
+    }
+  }
+
+  .inputs {
+    width: 300px;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btn {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .divider {
+    border-color: #fff;
+    border-width: 2px;
+    width: 80%;
+    margin: 0;
+  }
+
+  .or_divider {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    width: min(80%, 500px);
+    margin-left: auto;
+    margin-right: auto;
+
+    color: #fff;
+    text-transform: uppercase;
+    font-family: "Caveat", sans-serif;
+  }
+</style>
