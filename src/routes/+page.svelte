@@ -1,102 +1,61 @@
 <script lang="ts">
-  import {goto} from '$app/navigation'
-  import game from "$lib/store/game"
+  import StartState from "$lib/components/gameStates/start.svelte"
+  import LobbyState from "$lib/components/gameStates/lobby.svelte"
 
-  import '$lib/styles/global.scss'
+  import gameAPI from "$lib/api/game"
+  import gameStore, {type LobbyID, type Player} from "$lib/store/game"
 
-  import Container from "$lib/components/Container.svelte"
-  import TitleBlock from "$lib/components/TitleBlock.svelte"
-  import type {GameData} from "$lib/store/game"
-  import {onDestroy} from "svelte";
+  import {onMount} from "svelte"
 
-  let player = {
-    name: ""
-  }
+  let gameConn: null|Promise<void>
+  onMount(() => {
+    gameConn = gameAPI.connect()
+    gameConn.then(
+      () => {
+        gameAPI.on('lobby:join:success', function (data: {lobby_id: LobbyID, players: Player[]}) {
+          console.log(data)
+          gameStore.update(v => {
+            v.lobby.id = data.lobby_id
+            v.players  = data.players
+            return v
+          })
 
-  let gameData: GameData
-  const unsubscribe = game.subscribe((v) => {
-    gameData = v
+          gameStore.update(v => ({
+            ...v,
+            state: 'lobby'
+          }))
+        })
+
+        gameAPI.on('lobby:create:success', function (data: {id: LobbyID, players: Player[]}) {
+          gameStore.update(v => {
+            v.isOwner  = true
+            v.lobby.id = data.id
+            v.players  = data.players
+            return v
+          })
+
+          gameStore.update(v => ({
+            ...v,
+            state: 'lobby'
+          }))
+        })
+      }
+    )
   })
-
-  onDestroy(() => {
-    unsubscribe()
-  })
-  function joinLobby() {
-    goto('/lobby')
-  }
-
-  function createLobby() {
-    goto('/lobby')
-  }
 </script>`
 
-<Container>
-  <div class="title_container">
-    <TitleBlock title="Подкаты" subtitle="Бей в лунку!"/>
-  </div>
+{#if gameConn}
+  {#await gameConn}
+    Waiting for connection...
+  {:then val}
+    Connection success
+  {:catch val}
+    Connection error
+  {/await}
+{/if}
 
-  <div class="inputs mt-5">
-    <input placeholder="Назови себя" bind:value={player.name}/>
-    <input class="mt-2" placeholder="Код комнаты"/>
-  </div>
-
-  <button class="btn mt-5" on:click={joinLobby}>
-    Присоединится
-  </button>
-
-  <div class="or_divider mt-2">
-    <hr class="divider mt-2">
-    Или
-    <hr class="divider mt-2">
-  </div>
-
-  <button class="btn mt-2" on:click={createLobby}>
-    Создать лобби
-  </button>
-</Container>
-
-<style lang="scss">
-  @use "$lib/config.scss";
-
-  .title_container {
-    padding-top: 2rem;
-
-    @media (min-width: config.$screen-size-desktop) {
-      padding-top: 5rem;
-    }
-  }
-
-  .inputs {
-    width: 300px;
-
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .btn {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .divider {
-    border-color: #fff;
-    border-width: 2px;
-    width: 80%;
-    margin: 0;
-  }
-
-  .or_divider {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-
-    width: min(80%, 500px);
-    margin-left: auto;
-    margin-right: auto;
-
-    color: #fff;
-    text-transform: uppercase;
-    font-family: "Caveat", sans-serif;
-  }
-</style>
+{#if $gameStore.state === 'start'}
+  <StartState />
+{:else if $gameStore.state === 'lobby'}
+  <LobbyState />
+{/if}
