@@ -6,7 +6,6 @@
   import gameStore, {type LobbyID, type Player} from "$lib/store/game"
 
   import {onMount} from "svelte"
-  import {goto} from "$app/navigation"
 
   let gameConn: null|Promise<void>
   onMount(() => {
@@ -22,7 +21,8 @@
           })
 
           gameStore.update(v => ({
-            ...v, ...{state: 'lobby'}
+            ...v,
+            state: 'lobby'
           }))
         })
 
@@ -35,7 +35,8 @@
           })
 
           gameStore.update(v => ({
-            ...v, ...{state: 'lobby'}
+            ...v,
+            state: 'lobby'
           }))
         })
       }

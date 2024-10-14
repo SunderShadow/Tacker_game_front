@@ -21,7 +21,6 @@
   }
 
   onMount(() => {
-    console.log("MOUNT")
     gameAPI.on('lobby:join:guest', function (data: {player: Player}) {
       gameStore.update(v => {
         v.players.push(data.player)
